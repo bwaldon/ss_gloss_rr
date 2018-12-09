@@ -1,11 +1,13 @@
-var order = 1;
+var listnumber = _.sample(_.range(1, 14))
+var condition = _.sample(["primed","neutral"])
+var stimfile = "stims_" + listnumber + "_" + condition
 
-var stims = [{prime_expr: "about 30", target_expr: "about 30", neg: true, neg_print: "haven't"}, {prime_expr: "between 25 and 30", target_expr: "between 25 and 30", neg: false, neg_print: "have"}]
+var order = 1;
 
 function make_slides(f) {
   var slides = {};
-  var present_list = stims; //
-
+ var present_list = _.shuffle(stims.concat(fillers)); //
+ // var present_list = _.shuffle(fillers);
   slides.consent = slide({
      name : "consent",
      start: function() {
@@ -40,20 +42,35 @@ function make_slides(f) {
      },
 
      present_handle : function(stim) {
+      // if stim is an attention check, pass html 
      	this.stim = stim;
-     	$(".prompt").html("<i>Speaker A:</i> This  afternoon, " + stim.prime_expr + " delegates  will  be  coming  to  the  planning  meeting.    Have  we  printed  copies  of  the  agenda  for  them?  <p> <i>Speaker B:</i> <b> We " + stim.neg_print + " printed " + stim.target_expr + " copies  of  the  agenda.</b>");
+     	$(".prompt").html("Speaker A: " + stim.setup + ". " + 
+        stim.question + "<p>" + "Speaker B: <b>" + 
+        stim.response + ".</b>") ;
      },
 
-     button: function() {
+     button: function(stim) {
       if ($('input[name="rating"]:checked').val() == undefined) {
       	$(".error").show();
       } else {
-      	this.log_responses();
+        $(".error").hide()
 
         /* use _stream.apply(this); if and only if there is
         "present" data. (and only *after* responses are logged) */
-        _stream.apply(this);
-        $('input[name="rating"]').attr('checked',false);
+        if (this.stim.type == "filler" &  this.stim.truefalse_question != "na" & $('input[name="truefalse"]:checked').val() == undefined) {
+          $('.truefalse-buttons').show()
+          $('.vertical-radio-buttons').hide()
+          $(".prompt").html("Given what you just read, is the following true or false: <p><b>" +
+            this.stim.truefalse_question + "</b>.") ;
+        } else {
+          this.log_responses();
+          _stream.apply(this);
+          $('input[name="rating"]').attr('checked',false)
+          $('input[name="truefalse"]').attr('checked',false)
+          $('.truefalse-buttons').hide()
+          $('.vertical-radio-buttons').show()
+        }
+        ;
       }
   },
       log_responses: function() {
