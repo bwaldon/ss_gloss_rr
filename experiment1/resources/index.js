@@ -1,5 +1,6 @@
 var listnumber = _.sample(_.range(1, 14))
-var condition = _.sample(["primed","neutral"])
+// var condition = _.sample(["primed","neutral"])
+var condition = _.sample(["primed"])
 var stimfile = "stims_" + listnumber + "_" + condition
 
 var order = 1;

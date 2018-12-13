@@ -135,7 +135,7 @@ for (m in seq(1:14)) {
   stims <- rbind(stims, listofStims)
 }
 
- # write.csv(stims,file="ag.csv")
+write.csv(stims,file="ag.csv")
 
 # MAKE FILLERS
 
