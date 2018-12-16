@@ -17,8 +17,8 @@ for (m in seq(1:14)) {
   listofStims <- data.frame(matrix(ncol = 9, nrow = 0))
   colnames(listofStims) <- colnames(stims) <- c("id","expr","polarity","list","primetype","setup","question","response","type")
   for (n in seq(1:14)) {
-    o <- n + m
-    for (p in c(o, o+2)) {
+    p <- n + m
+  #  for (p in c(o, o+2)) {
       stim_id <- toString(items$id[(p %% 14) + 1])
       stim_polarity <- polarities[(n %% 2) + 1]
       stim_expr <- toString(expr$expr[(n %% 7) + 1])
@@ -29,8 +29,6 @@ for (m in seq(1:14)) {
         num_expression = paste(toString(expr$expr_print[(n %% 7) + 1]), " ", 
                                toString(items$n_between[(p %% 14) + 1]), " and ", toString(items$num[(p %% 14) + 1]))
       }
-      stim_num <- toString(items$num[(p %% 14) + 1])
-      stim_n_between <- toString(items$n_between[(p %% 14) + 1])
       if (stim_expr == "some") {
         stim_question <- toString(items$question_some[(p %% 14) + 1])
         stim_setup <- gsub("EXPR", "", toString(items$setup[(p %% 14) + 1]))
@@ -65,7 +63,7 @@ for (m in seq(1:14)) {
                                                 question = stim_question,
                                                 response = stim_response,
                                                 type = "critical")
-    }
+   # }
     }
   listofStims.json <- toJSON(listofStims)
   write(paste("var stims_",m,"_","primed =", toString(listofStims.json),"\n",sep=""), 
@@ -79,11 +77,13 @@ for (m in seq(1:14)) {
   listofStims <- data.frame(matrix(ncol = 9, nrow = 0))
   colnames(listofStims) <- colnames(stims) <- c("id","expr","polarity","list","primetype","setup","question","response","type")
   for (n in seq(1:14)) {
-    o <- n + m
-    for (p in c(o, o+2)) {
-      stim_id <- toString(items$id[(p %% 14) + 1])
-      stim_polarity <- polarities[(n %% 2) + 1]
-      stim_expr <- toString(expr$expr[(n %% 7) + 1])
+    p <- n + m
+    #  for (p in c(o, o+2)) {
+    stim_id <- toString(items$id[(p %% 14) + 1])
+    stim_polarity <- polarities[(n %% 2) + 1]
+    stim_expr <- toString(expr$expr[(n %% 7) + 1])
+    stim_setup <- gsub("EXPR", "", toString(items$setup[(p %% 14) + 1]))
+    stim_question <- toString(items$question_neutral[(p %% 14) + 1])
       if(stim_expr != "between") {
         num_expression = paste(toString(expr$expr_print[(n %% 7) + 1]), " ", 
                                toString(items$num[(p %% 14) + 1]))
@@ -91,27 +91,19 @@ for (m in seq(1:14)) {
         num_expression = paste(toString(expr$expr_print[(n %% 7) + 1]), " ", 
                                toString(items$n_between[(p %% 14) + 1]), " and ", toString(items$num[(p %% 14) + 1]))
       }
-      stim_num <- toString(items$num[(p %% 14) + 1])
-      stim_n_between <- toString(items$n_between[(p %% 14) + 1])
       if (stim_expr == "some") {
-        stim_question <- toString(items$question_some[(p %% 14) + 1])
-        stim_setup <- gsub("EXPR", "", toString(items$setup[(p %% 14) + 1]))
         if (stim_polarity == "positive") {
           stim_response <- gsub("EXPR", stim_expr, toString(items$response_pos[(p %% 14) + 1]))
         } else {
           stim_response <- gsub("EXPR", stim_expr, toString(items$response_neg[(p %% 14) + 1]))
         }
       } else if (stim_expr == "any") {
-        stim_question <- toString(items$question_any[(p %% 14) + 1])
-        stim_setup <- gsub("EXPR", "", toString(items$setup[(p %% 14) + 1]))
         if (stim_polarity == "positive") {
           stim_response <- gsub("EXPR", stim_expr, toString(items$response_pos[(p %% 14) + 1]))
         } else {
           stim_response <- gsub("EXPR", stim_expr, toString(items$response_neg[(p %% 14) + 1]))
         }
       } else {
-        stim_setup <- gsub("EXPR", num_expression, toString(items$setup[(p %% 14) + 1]))
-        stim_question <- toString(items$question_neutral[(p %% 14) + 1])
         if (stim_polarity == "positive") {
           stim_response <- gsub("EXPR", num_expression, toString(items$response_pos[(p %% 14) + 1]))
         } else {
@@ -127,7 +119,7 @@ for (m in seq(1:14)) {
                                                 question = stim_question,
                                                 response = stim_response,
                                                 type = "critical")
-    }
+  #  }
   }
   listofStims.json <- toJSON(listofStims)
   write(paste("var stims_",m,"_","neutral =", toString(listofStims.json),"\n",sep=""), 

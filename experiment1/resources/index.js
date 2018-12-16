@@ -1,7 +1,7 @@
-var listnumber = _.sample(_.range(1, 14))
-// var condition = _.sample(["primed","neutral"])
-var condition = _.sample(["primed"])
-var stimfile = "stims_" + listnumber + "_" + condition
+//var listnumber = _.sample(_.range(1, 14))
+var listnumber = 1;
+var condition = _.sample(["primed","neutral"]);
+var stimfile = "stims_" + listnumber + "_" + condition;
 
 var order = 1;
 
@@ -17,7 +17,7 @@ function make_slides(f) {
       exp.consent_position = 0;
      },
     button : function() {
-      if(exp.consent_position == 0) {
+      if(exp.consent_position === 0) {
          exp.consent_position++;
          $("#consent_1").hide();
          $("#consent_2").show();
@@ -51,14 +51,14 @@ function make_slides(f) {
      },
 
      button: function(stim) {
-      if ($('input[name="rating"]:checked').val() == undefined) {
+      if ($('input[name="rating"]:checked').val() === undefined) {
       	$(".error").show();
       } else {
         $(".error").hide()
 
         /* use _stream.apply(this); if and only if there is
         "present" data. (and only *after* responses are logged) */
-        if (this.stim.type == "filler" &  this.stim.truefalse_question != "na" & $('input[name="truefalse"]:checked').val() == undefined) {
+        if (this.stim.type == "filler" &  this.stim.truefalse_question != "na" & $('input[name="truefalse"]:checked').val() === undefined) {
           $('.truefalse-buttons').show()
           $('.vertical-radio-buttons').hide()
           $(".prompt").html("Given what you just read, is the following true or false: <p><b>" +
@@ -71,15 +71,19 @@ function make_slides(f) {
           $('.truefalse-buttons').hide()
           $('.vertical-radio-buttons').show()
         }
-        ;
       }
   },
       log_responses: function() {
       exp.data_trials.push({
         "rating" : $('input[name="rating"]:checked').val(),
-        "vignette" : this.stim.vignette,
-        "sentence" : this.stim.sentence,
-        "condition" : this.stim.condition,
+        "primetype" : this.stim.primetype,
+        "id" : this.stim.id,
+        "setup" : this.stim.setup,
+        "question" : this.stim.question,
+        "type" : this.stim.type,
+        "truefalse_question" : this.stim.truefalse_question,
+        "truefalse_answer" : this.stim.truefalse_answer,
+        "truefalse_response" : $('input[name="truefalse"]:checked').val(),
         "order" : order,
       });
     order = order + 1;
