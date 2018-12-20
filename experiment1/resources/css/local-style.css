@@ -11,3 +11,9 @@ img {
 .slide {
 	padding: 50px;
 }
+
+.hangingindent {
+	margin-left: 5em;
+	margin-top: -1.1em;
+  	margin-bottom: 0px;
+}

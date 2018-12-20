@@ -45,9 +45,9 @@ function make_slides(f) {
      present_handle : function(stim) {
       // if stim is an attention check, pass html 
      	this.stim = stim;
-     	$(".prompt").html("Speaker A: " + stim.setup + ". " + 
-        stim.question + "<p>" + "Speaker B: <b>" + 
-        stim.response + ".</b>") ;
+     	$(".prompt").html("<u>Speaker A</u>: <p class='hangingindent'>" + stim.setup + ". " + 
+        stim.question + "</p><br>" + "<u>Speaker B</u>: <p class='hangingindent'><b>" + 
+        stim.response + ".</b></p>") ;
      },
 
      button: function(stim) {

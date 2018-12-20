@@ -34,24 +34,30 @@ for (m in seq(1:14)) {
         stim_setup <- gsub("EXPR", "", toString(items$setup[(p %% 14) + 1]))
         if (stim_polarity == "positive") {
           stim_response <- gsub("EXPR", stim_expr, toString(items$response_pos[(p %% 14) + 1]))
+          stim_response <- paste("Yes. ", stim_response)
         } else {
           stim_response <- gsub("EXPR", stim_expr, toString(items$response_neg[(p %% 14) + 1]))
+          stim_response <- paste("No. ", stim_response)
         }
       } else if (stim_expr == "any") {
         stim_question <- toString(items$question_any[(p %% 14) + 1])
         stim_setup <- gsub("EXPR", "", toString(items$setup[(p %% 14) + 1]))
         if (stim_polarity == "positive") {
           stim_response <- gsub("EXPR", stim_expr, toString(items$response_pos[(p %% 14) + 1]))
+          stim_response <- paste("Yes. ", stim_response)
         } else {
           stim_response <- gsub("EXPR", stim_expr, toString(items$response_neg[(p %% 14) + 1]))
+          stim_response <- paste("No. ", stim_response)
         }
       } else {
         stim_setup <- gsub("EXPR", num_expression, toString(items$setup[(p %% 14) + 1]))
         stim_question <- toString(items$question_primed[(p %% 14) + 1])
         if (stim_polarity == "positive") {
           stim_response <- gsub("EXPR", num_expression, toString(items$response_pos[(p %% 14) + 1]))
+          stim_response <- paste("Yes. ", stim_response)
         } else {
           stim_response <- gsub("EXPR", num_expression, toString(items$response_neg[(p %% 14) + 1]))
+          stim_response <- paste("No. ", stim_response)
         }
       }
       listofStims[nrow(listofStims)+1,] <- list(id = stim_id, 
