@@ -68,7 +68,9 @@ for (m in seq(1:14)) {
                                                 setup = stim_setup,
                                                 question = stim_question,
                                                 response = stim_response,
-                                                type = "critical")
+                                                type = "critical",
+                                                truefalse_question = "na",
+                                                truefalse_answer = "na")
    # }
     }
   listofStims.json <- toJSON(listofStims)
