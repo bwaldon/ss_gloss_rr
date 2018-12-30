@@ -4,8 +4,8 @@ items <- read.csv("items.csv", header = TRUE)
 expr <- read.csv("expr.csv", header = TRUE)
 polarities <- c("positive","negative")
 
-stims <- data.frame(matrix(ncol = 9, nrow = 0))
-colnames(stims) <- colnames(stims) <- c("id","expr","polarity","list","primetype","setup","question","response","type")
+stims <- data.frame(matrix(ncol = 11, nrow = 0))
+colnames(stims) <- colnames(stims) <- c("id","expr","polarity","list","primetype","setup","question","response","type","truefalse_question","truefalse_answer")
 
 # MAKE LISTS
 
@@ -14,8 +14,8 @@ writeLines("",fileConn)
 close(fileConn)
 
 for (m in seq(1:14)) {
-  listofStims <- data.frame(matrix(ncol = 9, nrow = 0))
-  colnames(listofStims) <- colnames(stims) <- c("id","expr","polarity","list","primetype","setup","question","response","type")
+  listofStims <- data.frame(matrix(ncol = 11, nrow = 0))
+  colnames(listofStims) <- colnames(stims) <- c("id","expr","polarity","list","primetype","setup","question","response","type","truefalse_question","truefalse_answer")
   for (n in seq(1:14)) {
     p <- n + m
   #  for (p in c(o, o+2)) {
@@ -80,8 +80,8 @@ for (m in seq(1:14)) {
 # NEUTRAL
 
 for (m in seq(1:14)) {
-  listofStims <- data.frame(matrix(ncol = 9, nrow = 0))
-  colnames(listofStims) <- colnames(stims) <- c("id","expr","polarity","list","primetype","setup","question","response","type")
+  listofStims <- data.frame(matrix(ncol = 11, nrow = 0))
+  colnames(listofStims) <- colnames(stims) <- c("id","expr","polarity","list","primetype","setup","question","response","type","truefalse_question","truefalse_answer")
   for (n in seq(1:14)) {
     p <- n + m
     #  for (p in c(o, o+2)) {
@@ -124,7 +124,9 @@ for (m in seq(1:14)) {
                                                 setup = stim_setup,
                                                 question = stim_question,
                                                 response = stim_response,
-                                                type = "critical")
+                                                type = "critical",
+                                                truefalse_question = "na",
+                                                truefalse_answer = "na")
   #  }
   }
   listofStims.json <- toJSON(listofStims)
