@@ -3,6 +3,7 @@ var condition = _.sample(["primed","neutral"]);
 var stimfile = "stims_" + listnumber + "_" + condition;
 
 var order = 1;
+var truefalse_response = "na";
 
 function make_slides(f) {
   var slides = {};
@@ -63,6 +64,11 @@ function make_slides(f) {
           $(".prompt").html("Given what you just read, is the following true or false: <p><b>" +
             this.stim.truefalse_question + "</b>.") ;
         } else {
+          if (this.stim.truefalse_question === "na") {
+            truefalse_response = "na";
+          } else {
+            truefalse_response = $('input[name="truefalse"]:checked').val();
+          }
           this.log_responses();
           _stream.apply(this);
           $('input[name="rating"]').attr('checked',false)
@@ -85,7 +91,7 @@ function make_slides(f) {
         "polarity" : this.stim.polarity,
         "truefalse_question" : this.stim.truefalse_question,
         "truefalse_answer" : this.stim.truefalse_answer,
-        "truefalse_response" : $('input[name="truefalse"]:checked').val(),
+        "truefalse_response" : truefalse_response,
         "order" : order,
       });
     order = order + 1;
