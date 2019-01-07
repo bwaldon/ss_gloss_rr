@@ -9,7 +9,7 @@ disneyland,ever,positive,filler_bad,My family and I have been to Disneyland 4 ti
 sushi,ever,positive,filler_bad,Carol and Daniel often take their children to a sushi restaurant,Do your children like Japanese food too?,</b>No. <b>My children have ever eaten Japanese food,na,na
 accident,many,positive,filler_bad,Over 20 cars were involved in the accident on the highway,Do you know how many people were seriously injured?,All that many people were taken to the hospital,na,na
 studying,much,positive,filler_bad,Sam had to stay up all night studying for an important exam,Do you know how he managed to do that?,He drank much coffee to stay awake,Sam got a good night of sleep before his important exam,FALSE
-retire,much,positive,filler_bad,It has been 6 months since Lucy retired from her job,How has she spending her time since then?,She goes to the movies much these days,It has been half a year since Lucy retired from her job,TRUE
+retire,much,positive,filler_bad,It has been 6 months since Lucy retired from her job,How has she been spending her time since then?,She goes to the movies much these days,It has been half a year since Lucy retired from her job,TRUE
 picnic,fairly,negative,filler_bad,This afternoon we are driving to the lake for a picnic,Do you know what the trip is like?,</b>Yes. <b>The drive to the lake isn't fairly long,na,na
 plumber,already,negative,filler_bad,The plumber was supposed to come this afternoon to fix the sink,How long have we been waiting for him?,We haven't already waited 2 hours,The plumber was supposed to come today to fix the sink,TRUE
 film,at all,positive,filler_bad,The new action film has gotten rave reviews,What did you think of it?,I liked the movie at all,na,na
